@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #111111;
+            font-family: 'Segoe UI', sans-serif;
+            color: #ffffff;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #222222;
+            padding: 15px 30px;
+        }
+
+        /* Menu Icon */
+        #menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #ff5500;
+            z-index: 2000; /* Au-dessus de tout */
+        }
+
+        /* Photo de Profil */
+        header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #ff5500;
+            cursor: pointer;
+        }
+
+        /* Sliding Panel */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Caché initialement */
+            height: 100%;
+            width: 250px;
+            background-color: #222222;
+            padding: 20px;
+            transition: left 0.3s ease-in-out;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .menu.open {
+            left: 0; /* Affichage du menu */
+        }
+
+        .menu h3 {
+            color: #ff5500;
+            margin-bottom: 20px;
+        }
+
+        .menu a {
+            display: block;
+            color: #ffffff;
+            margin: 15px 0;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu a:hover {
+            color: #ff5500;
+        }
+
+        /* Posts */
+        .posts {
+            margin: 50px auto;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .post {
+            background-color: #222222;
+            border: 1px solid #444444;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .post h3 {
+            margin: 0;
+            color: #ff5500;
+        }
+
+        .post small {
+            color: #bbbbbb;
+        }
+
+        .post p {
+            margin: 10px 0 0;
+        }
+
+        /* Logout Button */
+        button.logout {
+            background-color: #ff5500;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        button.logout:hover {
+            background-color: #dd4400;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div id="menu-icon" onclick="toggleMenu()">☰</div>
+        <img src="https://i.ibb.co/4mKVpYk/your-photo.png" alt="Profile" onclick="showInfo()">
+    </header>
+
+    <!-- Sliding Panel -->
+    <div class="menu" id="menu">
+        <h3>Navigation</h3>
+        <a href="#">Home</a>
+        <a href="#">Settings</a>
+        <a href="#">Profile</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <!-- Posts Section -->
+    <div class="posts" id="posts">
+        <!-- Post Exemple -->
+        <div class="post">
+            <h3>Anonymous User</h3>
+            <small>Date: <span class="post-date"></span></small>
+            <p>Hi my familia</p>
+        </div>
+
+        <div class="post">
+            <h3>Anonymous User</h3>
+            <small>Date: <span class="post-date"></span></small>
+            <p>This is another post!</p>
+        </div>
+    </div>
+
+    <!-- Logout -->
+    <button class="logout" onclick="logout()">Logout</button>
+
+    <script>
+        // Fonction pour basculer le menu
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('open'); // Afficher ou cacher le menu
+        }
+
+        // Fonction pour afficher l'information de l'utilisateur
+        function showInfo() {
+            alert("Date of Registration: 2024-07-31\nLocation: Unknown");
+        }
+
+        // Fonction pour la déconnexion
+        function logout() {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+
+        // Ajouter automatiquement la date et l'heure pour chaque post
+        document.querySelectorAll('.post-date').forEach(function (span) {
+            const now = new Date();
+            span.textContent = now.toLocaleString();
+        });
+    </script>
+</body>
+</html>
