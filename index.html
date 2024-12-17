@@ -5,75 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+        /* Général */
         body {
             display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
             background-color: #111111;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #eeeeee;
             margin: 0;
             height: 100vh;
+            overflow-y: scroll; /* Permet le glissement complet */
         }
 
-        /* Form Section */
+        /* Section Formulaire */
         .form-section {
-            width: 40%;
-            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            margin-top: 50px; /* Ajout d'un espacement pour le titre */
+            padding: 20px;
             background: #222222;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            text-align: center;
         }
 
         h2 {
             color: #ff5500;
-            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px; /* Agrandir le texte */
         }
 
         label {
-            margin: 10px 0 5px;
+            text-align: left;
             display: block;
+            margin: 10px 0 5px;
             color: #aaaaaa;
+            font-size: 14px;
         }
 
         input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 15px;
             background-color: #333333;
             color: #ffffff;
             border: none;
             border-radius: 5px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus {
+            border: 2px solid #ff5500;
         }
 
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #ff5500;
             color: #ffffff;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s ease;
         }
 
         button:hover {
             background-color: #dd4400;
         }
 
-        /* Image Section */
+        /* Section Image */
         .image-section {
-            flex-grow: 1;
+            width: 90%;
+            max-width: 400px;
+            margin-top: 30px; /* Espacement entre le formulaire et l'image */
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #000000;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
         }
 
         img {
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             border-radius: 10px;
             border: 4px solid #ff5500;
         }
     </style>
 </head>
 <body>
+    <!-- Section Formulaire -->
     <div class="form-section">
         <h2>Login</h2>
         <label for="name">Name</label>
@@ -84,6 +112,8 @@
         <input type="password" id="password" placeholder="Enter password">
         <button onclick="login()">Submit</button>
     </div>
+
+    <!-- Section Image -->
     <div class="image-section">
         <img src="https://i.ibb.co/4mKVpYk/your-photo.png" alt="Static Image">
     </div>
