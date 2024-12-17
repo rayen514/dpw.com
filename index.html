@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            display: flex;
+            background-color: #111111;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #eeeeee;
+            margin: 0;
+            height: 100vh;
+        }
+
+        /* Form Section */
+        .form-section {
+            width: 40%;
+            padding: 30px;
+            background: #222222;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            color: #ff5500;
+            text-align: center;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            display: block;
+            color: #aaaaaa;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #333333;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff5500;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #dd4400;
+        }
+
+        /* Image Section */
+        .image-section {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000000;
+        }
+
+        img {
+            width: 300px;
+            border-radius: 10px;
+            border: 4px solid #ff5500;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-section">
+        <h2>Login</h2>
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" placeholder="Enter your surname">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="login()">Submit</button>
+    </div>
+    <div class="image-section">
+        <img src="https://i.ibb.co/4mKVpYk/your-photo.png" alt="Static Image">
+    </div>
+
+    <script>
+        function login() {
+            const name = document.getElementById('name').value;
+            localStorage.setItem('name', name);
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>
