@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deaths Today</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ff0000;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 60px;
+            text-transform: uppercase;
+            color: #ff3300;
+            text-shadow: 5px 5px 10px #ff0000;
+            margin-bottom: 20px;
+        }
+
+        .counter {
+            font-size: 80px;
+            color: #ff0000;
+            font-weight: bold;
+            margin-top: 20px;
+            text-shadow: 5px 5px 20px #ff0000;
+        }
+
+        p {
+            font-size: 20px;
+            color: #cccccc;
+            text-shadow: 2px 2px 5px #000000;
+            margin-top: 20px;
+        }
+
+        .horrible-text {
+            font-size: 18px;
+            color: #ff3300;
+            font-weight: bold;
+            text-shadow: 3px 3px 10px #000000;
+            margin-top: 30px;
+        }
+
+        .refresh-warning {
+            font-size: 18px;
+            color: #ffff00;
+            font-weight: bold;
+            margin-top: 50px;
+            text-shadow: 2px 2px 5px #ff0000;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            color: #ff6666;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #ff6666;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Deaths Today</h1>
+
+    <div class="counter" id="deathCounter">
+        0
+    </div>
+
+    <p class="horrible-text">
+        As you refresh this page, you become more connected to the horrors that await. Deaths that increase with every second you spend in this place.
+    </p>
+
+    <p class="horrible-text">
+        Once you see the numbers rise, you can't escape them. The countdown never ends. You will always be part of this darkness.
+    </p>
+
+    <p class="horrible-text">
+        You may think refreshing will change things. But it only resets the horrors, not the inevitable.
+    </p>
+
+    <p class="refresh-warning">
+        WARNING: Every refresh does not save you. It only brings you closer to the truth.
+    </p>
+
+    <div class="footer">
+        <p>Time moves faster here, and there is no escape.</p>
+    </div>
+
+    <script>
+        // Get the current timestamp when the page is first loaded or get the last increment date
+        let lastIncrementTime = localStorage.getItem('lastIncrementTime');
+        let deathCount = localStorage.getItem('deathCount') ? parseInt(localStorage.getItem('deathCount')) : 0;
+
+        // If no timestamp is found, set the last increment time to now
+        if (!lastIncrementTime) {
+            lastIncrementTime = Date.now();
+            localStorage.setItem('lastIncrementTime', lastIncrementTime);
+        }
+
+        function updateCounter() {
+            const now = Date.now();
+            const elapsedTime = now - lastIncrementTime;
+            const secondsInDay = 86400000; // 24 hours in milliseconds
+
+            // If more than 24 hours have passed, reset the counter and start from 1 again
+            if (elapsedTime >= secondsInDay) {
+                deathCount = 1;
+                localStorage.setItem('lastIncrementTime', now);  // Reset the time
+            } else {
+                deathCount++;  // Increment by 1 if less than 24 hours
+            }
+
+            // Update the counter on the page
+            document.getElementById('deathCounter').textContent = deathCount;
+
+            // Save the current death count to localStorage
+            localStorage.setItem('deathCount', deathCount);
+        }
+
+        // Update the counter immediately when the page loads
+        updateCounter();
+
+        // Optionally, you can call this function every second to keep track of time
+        setInterval(updateCounter, 1000);
+    </script>
+
+</body>
+</html>
